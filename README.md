@@ -1,6 +1,6 @@
 # Video Analytics & Computer Vision Architecture Portfolio
 
-> **Author:** Machine Learning & Data Engineer  
+> **Author:** AI Engineer  
 > **Education:**  
 > • **M.Sc. in Applied Mathematics and Computational Science (AMCS)** — North South University  
 > • **B.S.S. in Economics & Finance** — BRAC University  
@@ -13,7 +13,7 @@
 
 Welcome to my **Video Analytics & Computer Vision Architecture Portfolio**. 
 
-With an interdisciplinary background combining an **M.Sc. in Applied Mathematics and Computational Science (North South University)** and a **B.S.S. in Economics & Finance (BRAC University)**, I approach machine learning engineering through a dual lens: **rigorous computational execution** (low-latency inference, model quantization, scalable vector databases) paired with an **analytical, business-driven mindset** (minimizing server costs, eliminating workforce fraud, and optimizing hardware CapEx).
+With an interdisciplinary background combining an **M.Sc. in Applied Mathematics and Computational Science (North South University)** and a **B.S.S. in Economics & Finance (BRAC University)**, I approach AI engineering through a dual lens: **rigorous computational execution** (low-latency inference, model quantization, scalable vector databases) paired with an **analytical, business-driven mindset** (minimizing server costs, eliminating workforce fraud, and optimizing hardware CapEx).
 
 This repository details the architectural designs, physical failure analyses, and empirical benchmarks of four production-grade computer vision systems:
 

@@ -1,6 +1,6 @@
 # Project 2: Distributed Edge RTSP Face Recognition & Vector Search System
 
-> **Role:** Machine Learning & Data Engineer  
+> **Role:** AI Engineer  
 > **Tech Stack:** Python, RTSP Multi-threading, OpenCV, ONNX Runtime (INT8), YuNet, SFace, PostgreSQL, `pgvector`  
 > **Domain:** Edge Video Streaming, Scalable Vector Databases & Enterprise Attendance
 

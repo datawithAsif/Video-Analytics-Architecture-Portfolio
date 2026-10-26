@@ -1,6 +1,6 @@
 # Project 3: High-Precision Pedestrian Tracking & Model Calibration
 
-> **Role:** Machine Learning & Data Engineer  
+> **Role:** AI Engineer  
 > **Tech Stack:** Python, ONNX Runtime (CUDA), YOLOX (Small vs X), ByteTrack, OpenCV, Supervision  
 > **Domain:** Object Detection, Multi-Object Tracking (MOT) & Commercial Footfall Analytics
 

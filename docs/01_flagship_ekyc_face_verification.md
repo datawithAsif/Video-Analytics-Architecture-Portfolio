@@ -1,6 +1,6 @@
 # Project 1: High-Throughput FinTech e-KYC & Anti-Spoofing API
 
-> **Role:** Machine Learning & Data Engineer  
+> **Role:** AI Engineer  
 > **Tech Stack:** Python, FastAPI, ONNX Runtime (CUDA / CPU), SCRFD, AdaFace (ResNet-100), MiniFASNet, OpenCV, Pillow-HEIF  
 > **Domain:** Digital Identity Verification, Biometrics & Anti-Fraud Security
 

@@ -1,6 +1,6 @@
 # Project 4: Macroscopic Crowd Density Estimation & Spatial Analytics
 
-> **Role:** Machine Learning & Data Engineer  
+> **Role:** AI Engineer  
 > **Tech Stack:** Python, PyTorch, DM-Count, Bayesian Point Loss, CSRNet, OpenCV, SciPy, Matplotlib  
 > **Domain:** Dense Crowd Counting, Spatial Heatmap Analytics & Event Safety
 
