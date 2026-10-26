@@ -1,0 +1,52 @@
+flowchart TD
+    subgraph Edge_Streaming ["Multi-Camera Ingestion Tier"]
+        CAM1["IP Camera 01 (RTSP Stream)"]
+        CAM2["IP Camera 02 (RTSP Stream)"]
+        CAMN["IP Camera N (RTSP Stream)"]
+        
+        TH1["Worker Thread 1\n(Circular Queue Buffer)"]
+        TH2["Worker Thread 2\n(Circular Queue Buffer)"]
+        THN["Worker Thread N\n(Circular Queue Buffer)"]
+        
+        CAM1 --> TH1
+        CAM2 --> TH2
+        CAMN --> THN
+    end
+
+    subgraph Frame_Processing ["Edge Inference Pipeline"]
+        SKIP["Frame Skip Decimator\n(Sample every k-th frame)"]
+        YUNET["YuNet INT8 Face Detector\n(Dynamic Bounding Box & 5-Keypoint)"]
+        WARP["Affine Landmark Warper\n(Standardized Canonical Crop)"]
+        SFACE["SFace INT8 Feature Extractor\n(128-d Compact Identity Vector)"]
+        
+        TH1 --> SKIP
+        TH2 --> SKIP
+        THN --> SKIP
+        SKIP --> YUNET --> WARP --> SFACE
+    end
+
+    subgraph Vector_Search_Tier ["PostgreSQL + pgvector Database Tier"]
+        EMBED["Query Vector (128-d)"]
+        IVF["IVFFlat Inverted File Index\n(Approximate Nearest Neighbor Cosine Search)"]
+        CORPUS["Enrolled Identity Database\n(20,000+ Enrolled Vectors)"]
+        TOP1["Top-1 Candidate Selection\n(Distance < Matching Threshold)"]
+        
+        SFACE --> EMBED --> IVF
+        CORPUS -.-> IVF
+        IVF --> TOP1
+    end
+
+    subgraph State_Management ["Temporal Deduplication & Logging"]
+        CD_CHECK{"Active Cooldown Key\nin Memory Cache?"}
+        LOG["Append Verified Attendance Record\n(Timestamp, Employee ID, Confidence)"]
+        DISCARD["Suppress Duplicate Swipe\n(Cool-down Window Active)"]
+        
+        TOP1 --> CD_CHECK
+        CD_CHECK -->|No: First Detection| LOG
+        CD_CHECK -->|Yes: Recent Detection| DISCARD
+    end
+
+    style Edge_Streaming fill:#f8fafc,stroke:#475569,stroke-width:2px
+    style Frame_Processing fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style Vector_Search_Tier fill:#fefce8,stroke:#eab308,stroke-width:2px
+    style State_Management fill:#f0fdf4,stroke:#16a34a,stroke-width:2px

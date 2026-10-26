@@ -1,0 +1,53 @@
+flowchart TD
+    subgraph Client_Inputs ["Dual-Channel Ingestion"]
+        LIVE["Live Webcam Capture\n(Selfie / Mobile Stream)"]
+        NID["Official ID Reference\n(National ID / Passport Scan)"]
+    end
+
+    subgraph Decoding_Validation ["Format Decoding & Pre-Filtering"]
+        DEC1["Multi-Format Decoder\n(Raster / HEIF / RAW Bayer)"]
+        DEC2["Raster Decoder\n(Standard Document Image)"]
+        BPP["Information Density Filter\n(Bits Per Pixel >= 1.0 Gate)"]
+        
+        LIVE --> DEC1 --> BPP
+        NID --> DEC2
+    end
+
+    subgraph Spatial_Processing ["Face Localization & Landmark Normalization"]
+        DET1["Face Detection & 5-pt Landmarks\n(SCRFD 10G)"]
+        DET2["Document Face Detection\n(SCRFD 10G)"]
+        ALIGN1["Similarity Transform Warping\n(112x112 Canonical Alignment)"]
+        ALIGN2["Similarity Transform Warping\n(112x112 Canonical Alignment)"]
+
+        BPP -->|Pass BPP Gate| DET1 --> ALIGN1
+        BPP -->|Fail Compression Check| REJ_BPP["HTTP 422: Rejection (Compressed Replay)"]
+        DEC2 --> DET2 --> ALIGN2
+    end
+
+    subgraph Security_Gate ["Anti-Spoofing & Liveness Evaluation"]
+        SPOOF["MiniFASNetV2-SE Liveness Check\n(1.5x Crop + Aspect Preserved 128x128)"]
+        EVAL_SPOOF{"Logit Difference:\nReal - Spoof >= Threshold?"}
+        
+        ALIGN1 --> SPOOF --> EVAL_SPOOF
+    end
+
+    subgraph Identity_Matching ["Feature Extraction & Vector Scoring"]
+        ADA1["AdaFace Feature Extractor\n(ResNet-100 Backbone -> 512-d L2 Unit Vector)"]
+        ADA2["AdaFace Feature Extractor\n(ResNet-100 Backbone -> 512-d L2 Unit Vector)"]
+        COS["Vector Dot Product\nCosine Similarity: e_live . e_nid"]
+        DECISION{"Similarity >= Threshold_match\n(Default: 0.45 Quality-Adaptive)"}
+
+        EVAL_SPOOF -->|Yes: Real Human| ADA1
+        EVAL_SPOOF -->|No: Spoof Attack| REJ_SPOOF["HTTP 403: Rejection (Liveness Failed)"]
+        ALIGN2 --> ADA2
+        
+        ADA1 --> COS
+        ADA2 --> COS
+        COS --> DECISION
+        DECISION -->|Yes| MATCH["Identity Verified (e-KYC Confirmed)"]
+        DECISION -->|No| MISMATCH["Identity Mismatch (Verification Failed)"]
+    end
+
+    style Security_Gate fill:#fef2f2,stroke:#ef4444,stroke-width:2px
+    style Identity_Matching fill:#f0fdf4,stroke:#22c55e,stroke-width:2px
+    style Decoding_Validation fill:#f8fafc,stroke:#64748b,stroke-width:2px

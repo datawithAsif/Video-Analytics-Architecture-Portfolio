@@ -1,0 +1,54 @@
+flowchart TD
+    %% Global Video Analytics & Quantitative Financial Infrastructure
+
+    subgraph Data_Ingestion ["1. Multi-Modal Ingestion Tier"]
+        RTSP["RTSP Camera Streams\n(H.264/H.265 RTSP Feeds)"]
+        HTTP["REST API Client Payloads\n(Base64 Web / Mobile / NID Scans)"]
+        VIDEO["Recorded Video Assets\n(High-Density Commercial Feeds)"]
+    end
+
+    subgraph Micro_Macro_Analytics ["2. Spatial Vision & Tracking Tier"]
+        YOLO["Pedestrian Detector & Tracker\n(YOLOX + ByteTrack Engine)"]
+        DM["Crowd Density Regressor\n(DM-Count / CSRNet Architecture)"]
+        
+        VIDEO --> YOLO
+        VIDEO --> DM
+        RTSP --> YOLO
+    end
+
+    subgraph Biometric_Processing ["3. Biometric Verification & Liveness Tier"]
+        DET["Face Localization & Landmark Alignment\n(YuNet / SCRFD 10G)"]
+        LIVENESS["2D Physical Anti-Spoofing & BPP Filter\n(MiniFASNetV2-SE + Information Density Gate)"]
+        EMBED["Quality-Adaptive Embedding Engine\n(AdaFace ResNet-100 / SFace INT8)"]
+        
+        HTTP --> DET
+        RTSP --> DET
+        DET --> LIVENESS
+        LIVENESS -->|Pass Liveness| EMBED
+        LIVENESS -->|Fail Spoof| REJECT["Rejection & Fraud Alert"]
+    end
+
+    subgraph Storage_Search ["4. Scalable Storage & Vector Retrieval Tier"]
+        PG["PostgreSQL + pgvector Engine\n(IVFFlat Inverted File Index, 512-d / 128-d)"]
+        STATE["Temporal State Manager\n(Circular Buffer & Cooldown Cache)"]
+        
+        EMBED --> PG
+        EMBED --> STATE
+    end
+
+    subgraph Quantitative_Economics ["5. Applied Financial & Decision Economics"]
+        LOSS["Asymmetric Risk & Loss Engine\nCost(FAR) vs Cost(FRR) Optimization"]
+        TCO["Compute TCO Optimization Engine\nEdge CapEx vs Cloud OpEx Trade-off"]
+        SPATIAL["Spatial Footfall & Labor Economics\nConversion Elasticity & Time-Theft Mitigation"]
+        
+        PG --> LOSS
+        STATE --> SPATIAL
+        YOLO --> SPATIAL
+        DM --> SPATIAL
+        PG -.-> TCO
+    end
+
+    style Biometric_Processing fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
+    style Micro_Macro_Analytics fill:#eff6ff,stroke:#2563eb,stroke-width:2px
+    style Storage_Search fill:#fefce8,stroke:#ca8a04,stroke-width:2px
+    style Quantitative_Economics fill:#fff1f2,stroke:#e11d48,stroke-width:2px

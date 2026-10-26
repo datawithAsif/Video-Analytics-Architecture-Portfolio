@@ -1,0 +1,51 @@
+flowchart TD
+    subgraph Video_Input ["Macroscopic Video Ingestion"]
+        INPUT["Dense Crowd Video Stream\n(2688x1520 Resolution, 19,500+ Frames)"]
+        FRAME_GEN["Temporal Frame Generator\n(Extract RGB Frames with Timestamp Logging)"]
+        INPUT --> FRAME_GEN
+    end
+
+    subgraph Density_Regression_Tier ["Multi-Architecture Density Regression"]
+        DM["Primary Model: DM-Count (QNRF Weights)\nDistribution Matching Loss via Optimal Transport"]
+        BAY["Cross-Validation Model 1: Bayesian Loss (QNRF)\nBayesian Point Supervised Density Regression"]
+        SHA["Cross-Validation Model 2: DM-Count (ShanghaiTech-A)\nExtreme Density Transfer Validation"]
+        
+        FRAME_GEN --> DM
+        FRAME_GEN --> BAY
+        FRAME_GEN --> SHA
+    end
+
+    subgraph Density_Map_Integration ["Spatial Density Map & Integral"]
+        INT_DM["Continuous Spatial Integral: ∫∫ D(x,y) dx dy\n(DM-Count Estimate: 1872.31 at Peak)"]
+        INT_BAY["Continuous Spatial Integral: ∫∫ D_bay(x,y) dx dy\n(Bayesian Estimate: 1758.78 at Peak)"]
+        INT_SHA["Continuous Spatial Integral: ∫∫ D_sha(x,y) dx dy\n(SHA Estimate: 2196.61 at Peak)"]
+        
+        DM --> INT_DM
+        BAY --> INT_BAY
+        SHA --> INT_SHA
+    end
+
+    subgraph Statistical_Synthesis ["Statistical Convergence & Uncertainty"]
+        ENS["Ensemble Mean & Confidence Bounds\nMean Peak Count: 1942.57 ± 183.79 (9.4% Uncertainty)"]
+        TIMELINE["Temporal Crowd Timeline Curve\n(Frame-by-Frame Density Profile across 780s)"]
+        HEATMAP["Spatial Concentration Heatmap\n(Bottleneck & High-Density Cluster Localization)"]
+        
+        INT_DM --> ENS
+        INT_BAY --> ENS
+        INT_SHA --> ENS
+        
+        ENS --> TIMELINE
+        ENS --> HEATMAP
+    end
+
+    subgraph Spatial_Economics ["Quantitative Economic Implications"]
+        CAPACITY["Commercial Spatial Capacity Optimization\n(Footfall Velocity & Revenue Elasticity)"]
+        INSURANCE["Event Risk Underwriting & Crowd Disaster Loss Modeling"]
+        
+        TIMELINE --> CAPACITY
+        HEATMAP --> INSURANCE
+    end
+
+    style Density_Regression_Tier fill:#eff6ff,stroke:#2563eb,stroke-width:2px
+    style Statistical_Synthesis fill:#fefce8,stroke:#ca8a04,stroke-width:2px
+    style Spatial_Economics fill:#fff1f2,stroke:#e11d48,stroke-width:2px
