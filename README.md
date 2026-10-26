@@ -11,11 +11,7 @@
 
 ## Executive Summary
 
-Welcome to my **Video Analytics & Computer Vision Architecture Portfolio**. 
-
-With an interdisciplinary background combining an **M.Sc. in Applied Mathematics and Computational Science (North South University)** and a **B.S.S. in Economics & Finance (BRAC University)**, I approach AI engineering through a dual lens: **rigorous computational execution** (low-latency inference, model quantization, scalable vector databases) paired with an **analytical, business-driven mindset** (minimizing server costs, eliminating workforce fraud, and optimizing hardware CapEx).
-
-This repository details the architectural designs, physical failure analyses, and empirical benchmarks of four production-grade computer vision systems:
+Production system architectures, failure analyses, and empirical benchmarks for four high-throughput computer vision systems—bridging low-latency edge inference with measurable financial ROI:
 
 <p align="center">
   <img src="diagrams/unified_system_topology.png" alt="Distributed Multi-Camera Computer Vision & Real-Time Vector Topology Blueprint" width="100%">
@@ -92,28 +88,19 @@ flowchart TD
 
 ## Key Technical Highlights
 
-### 1. Hardening Biometric Security (FinTech e-KYC)
-* **Information Density ($BPP$) Filter:** Attackers download compressed target photos from Facebook or WhatsApp and hold them to the camera. By requiring a minimum of $1.0\text{ Bits Per Pixel}$, the API instantly rejects compressed social media replays at the network perimeter.
-* **Apple Deep Fusion vs. RAW Bayer Analysis:** Discovered that smartphone in-camera noise reduction (like Apple's Deep Fusion) blurs away screen moiré lines in JPEGs, inadvertently helping screen spoofing attacks. Built raw `.DNG` sensor pipelines to detect authentic high-frequency screen interference.
-* **Quality-Adaptive Loss (AdaFace):** Adaptively relaxes confidence margins on faded or laminated government National ID scans, preventing false rejections of legitimate customers.
-
-### 2. Scalable High-Dimensional Vector Search
-* **PostgreSQL + `pgvector`:** Indexed 20,000+ employee embeddings into 100 Voronoi clusters using IVFFlat, reducing nearest-neighbor query times from hundreds of milliseconds down to **under 5 milliseconds**.
-* **Thread-per-Camera Decoupling:** Decoupled continuous 25 fps RTSP video socket capture from neural network inference using atomic circular queues (`maxlen=1`), eliminating the growing video lag common in standard loops.
-
-### 3. The Sub-Decimal Tracker Calibration Breakthrough
-* **100% Accuracy on an 11x Smaller Footprint:** Rather than running the resource-heavy YOLOX-X model (395 MB), systematically calibrated the lightweight YOLOX-Small model (35 MB) using sub-decimal threshold tuning (`0.4964` matching threshold, `21` frame buffer). Achieved **exact 0.00% error rate parity (392/392 unique people)** while increasing pipeline speed by **1.87x**.
+* **Presentation Attack Defense (BPP & RAW Analysis):** An Information Density filter ($BPP \ge 1.0$) rejects compressed social media replays at the network perimeter. Raw sensor `.DNG` decoding bypasses in-camera noise smoothing (e.g. Apple Deep Fusion) to catch microscopic screen moiré artifacts.
+* **Sub-5ms Vector Search (pgvector IVFFlat):** Clustered 20,000+ staff embeddings into 100 Voronoi cells, reducing vector query latency from hundreds of milliseconds to **under 5ms**.
+* **Zero Video Lag (Thread-per-Camera Architecture):** Atomic circular queues (`maxlen=1`) decouple 25 FPS RTSP socket capture from GPU inference, completely eliminating frame buffer buildup.
+* **100% Tracking Parity on 11x Smaller Footprint:** Calibrated YOLOX-Small (35MB) against heavy YOLOX-X (395MB) via sub-decimal threshold tuning ($t_{\text{match}} = 0.4964$, 21-frame buffer), achieving **0.00% error rate (392/392 headcount)** with a **1.87x speedup**.
 
 ---
 
-## Business Value & ROI Summary
+## Business Impact & ROI
 
-Combining an Applied Mathematics & Computational Science background with Economics & Finance, I prioritize engineering choices that directly translate to bottom-line business value:
-
-* 💰 **SaaS Displacement:** The self-hosted e-KYC pipeline replaces commercial identity vendors (\$0.50–\$1.50 per check), saving over **\$80,000 annually** for an active digital platform.
-* 🛡️ **Eliminating Payroll Time-Theft:** Automated biometric attendance removes "buddy punching", which costs enterprises **2% to 5% of gross payroll** annually.
-* ⚡ **Hardware CapEx Optimization:** Calibrating lightweight models (35MB vs 395MB) allows the tracking pipeline to run on **\$450 mini-PCs** rather than **\$3,000 GPU workstations** (85% hardware cost savings per deployed site).
-* 🌐 **90%+ Bandwidth & Cloud Savings:** Processing video locally on edge devices avoids recurring cloud streaming and cloud GPU fees (saving **\$30,000+ per year** across a 20-camera facility).
+* 💰 **SaaS Displacement:** In-house e-KYC replaces \$0.50–\$1.50/check third-party vendors, saving **>\$80,000/year** at scale.
+* 🛡️ **Time-Theft Elimination:** Automated biometric attendance removes buddy-punching, protecting **2%–5% of gross payroll**.
+* ⚡ **85% Hardware CapEx Reduction:** Tuning lightweight models enables deployment on **\$450 edge mini-PCs** instead of **\$3,000 GPU workstations**.
+* 🌐 **Zero Cloud Streaming Costs:** On-premise edge inference saves **\$30,000+/year** in video bandwidth and cloud GPU rental fees.
 
 ---
 
