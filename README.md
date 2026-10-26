@@ -1,8 +1,10 @@
 # Video Analytics & Computer Vision Architecture Portfolio
 
 > **Author:** Machine Learning & Data Engineer  
-> **Academic Background:** B.Sc. in Economics & Finance, BRAC University  
-> **Core Focus:** Real-Time Video Analytics, Biometrics, Scalable Vector Systems & Production Edge AI  
+> **Education:**  
+> • **M.Sc. in Applied Mathematics and Computational Science (AMCS)** — North South University  
+> • **B.S.S. in Economics & Finance** — BRAC University  
+> **Core Focus:** Real-Time Video Analytics, Edge Biometrics, Scalable Vector Systems & MLOps  
 > **Repository Nature:** 100% Architectural System Designs, RFCs & Production Benchmarks (Zero Proprietary Code)
 
 ---
@@ -11,7 +13,7 @@
 
 Welcome to my **Video Analytics & Computer Vision Architecture Portfolio**. 
 
-With an academic foundation in **Economics & Finance from BRAC University**, I approach machine learning engineering through a dual lens: **deep technical execution** (low-latency inference, model quantization, scalable vector databases) paired with an **analytical, business-driven mindset** (minimizing server costs, eliminating workforce fraud, and optimizing hardware CapEx).
+With an interdisciplinary background combining an **M.Sc. in Applied Mathematics and Computational Science (North South University)** and a **B.S.S. in Economics & Finance (BRAC University)**, I approach machine learning engineering through a dual lens: **rigorous computational execution** (low-latency inference, model quantization, scalable vector databases) paired with an **analytical, business-driven mindset** (minimizing server costs, eliminating workforce fraud, and optimizing hardware CapEx).
 
 This repository details the architectural designs, physical failure analyses, and empirical benchmarks of four production-grade computer vision systems:
 
@@ -96,7 +98,7 @@ flowchart TD
 
 ## Business Value & ROI Summary
 
-Coming from an Economics & Finance background, I prioritize engineering choices that directly translate to bottom-line business value:
+Combining an Applied Mathematics & Computational Science background with Economics & Finance, I prioritize engineering choices that directly translate to bottom-line business value:
 
 * 💰 **SaaS Displacement:** The self-hosted e-KYC pipeline replaces commercial identity vendors (\$0.50–\$1.50 per check), saving over **\$80,000 annually** for an active digital platform.
 * 🛡️ **Eliminating Payroll Time-Theft:** Automated biometric attendance removes "buddy punching", which costs enterprises **2% to 5% of gross payroll** annually.
