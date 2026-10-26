@@ -17,7 +17,7 @@ This project delivers a **Real-Time Unique Pedestrian Tracking Pipeline** using 
 </p>
 
 <details>
-<summary><b>📐 View Architectural Flow Specification (Mermaid)</b></summary>
+<summary><b>View Architectural Flow Specification (Mermaid)</b></summary>
 
 ```mermaid
 flowchart TD
@@ -75,7 +75,7 @@ flowchart TD
 
 Testing the calibrated YOLOX-Small model on real-world crowd video confirmed **flawless accuracy parity** with the massive baseline model:
 
-| Metric | 🔴 YOLOX-X (Heavy Baseline) | 🟢 YOLOX-Small (Calibrated) | ⚖️ Architectural Advantage |
+| Metric | YOLOX-X (Heavy Baseline) | YOLOX-Small (Calibrated) | Architectural Advantage |
 | :--- | :---: | :---: | :---: |
 | **Model Size** | 395 MB | **35 MB** | **11.3x smaller footprint** |
 | **Tracker Matching Threshold** | 0.8000 | **0.4964 (Calibrated)** | Precise boundary tuning |

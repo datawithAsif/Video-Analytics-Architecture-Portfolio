@@ -18,7 +18,7 @@ Production system architectures, failure analyses, and empirical benchmarks for 
 </p>
 
 <details>
-<summary><b>📐 View Architectural Flow Specification (Mermaid)</b></summary>
+<summary><b>View Architectural Flow Specification (Mermaid)</b></summary>
 
 ```mermaid
 flowchart TD
@@ -97,10 +97,10 @@ flowchart TD
 
 ## Business Impact & ROI
 
-* 💰 **SaaS Displacement:** In-house e-KYC replaces \$0.50–\$1.50/check third-party vendors, saving **>\$80,000/year** at scale.
-* 🛡️ **Time-Theft Elimination:** Automated biometric attendance removes buddy-punching, protecting **2%–5% of gross payroll**.
-* ⚡ **85% Hardware CapEx Reduction:** Tuning lightweight models enables deployment on **\$450 edge mini-PCs** instead of **\$3,000 GPU workstations**.
-* 🌐 **Zero Cloud Streaming Costs:** On-premise edge inference saves **\$30,000+/year** in video bandwidth and cloud GPU rental fees.
+* **SaaS Displacement:** In-house e-KYC replaces \$0.50–\$1.50/check third-party vendors, saving **>\$80,000/year** at scale.
+* **Time-Theft Elimination:** Automated biometric attendance removes buddy-punching, protecting **2%–5% of gross payroll**.
+* **85% Hardware CapEx Reduction:** Tuning lightweight models enables deployment on **\$450 edge mini-PCs** instead of **\$3,000 GPU workstations**.
+* **Zero Cloud Streaming Costs:** On-premise edge inference saves **\$30,000+/year** in video bandwidth and cloud GPU rental fees.
 
 ---
 

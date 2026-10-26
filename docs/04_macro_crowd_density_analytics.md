@@ -17,7 +17,7 @@ This project delivers a **Macroscopic Crowd Density Estimation Pipeline**. Inste
 </p>
 
 <details>
-<summary><b>📐 View Architectural Flow Specification (Mermaid)</b></summary>
+<summary><b>View Architectural Flow Specification (Mermaid)</b></summary>
 
 ```mermaid
 flowchart TD

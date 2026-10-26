@@ -17,7 +17,7 @@ This project delivers a **Real-Time Edge Face Attendance System** capable of pro
 </p>
 
 <details>
-<summary><b>📐 View Architectural Flow Specification (Mermaid)</b></summary>
+<summary><b>View Architectural Flow Specification (Mermaid)</b></summary>
 
 ```mermaid
 flowchart TD
