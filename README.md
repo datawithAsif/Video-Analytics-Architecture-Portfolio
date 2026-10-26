@@ -19,53 +19,53 @@ This repository details the architectural designs, physical failure analyses, an
 
 ```mermaid
 flowchart TD
-    %% Recruiter-Friendly End-to-End System Architecture
+    %% Professional End-to-End System Architecture
 
-    subgraph Step1 ["1. Live Data Capture"]
-        CAM["📹 Office & Factory CCTV\n(Live Camera Feeds)"]
-        APP["📱 Mobile App / Web Portal\n(Selfie & ID Card Uploads)"]
-        DRONE["🏙️ High-Density Video\n(Crowd & Pedestrian Feeds)"]
+    subgraph Stage1 ["Stage 1: Multi-Stream Data Ingestion"]
+        CAM["Camera Ingestion<br>RTSP IP Video Feeds"]
+        APP["Client Applications<br>REST API Payloads (Mobile & Web)"]
+        VIDEO["Recorded Surveillance<br>High-Density Video Feeds"]
     end
 
-    subgraph Step2 ["2. Smart AI Processing"]
-        LIVENESS["🛡️ Fraud & Liveness Check\nBlocks fake photos & screen replays"]
-        TRACK["🚶 People Tracker\nCounts unique pedestrians without duplicates"]
-        HEATMAP["🔥 Crowd Density Heatmap\nEstimates large crowds (>1,000 people)"]
-        RECOG["👤 Face Recognition Engine\nExtracts unique biometric identity"]
+    subgraph Stage2 ["Stage 2: Vision & Biometric Pipeline"]
+        LIVENESS["Anti-Spoofing & Liveness Gate<br>Filters screen replays and printed photos"]
+        TRACK["Pedestrian Tracking Engine<br>Two-stage association with occlusion handling"]
+        HEATMAP["Spatial Density Regressor<br>Continuous density estimation for dense crowds"]
+        RECOG["Feature Extraction Engine<br>High-dimensional biometric vector embedding"]
     end
 
-    subgraph Step3 ["3. High-Speed Database"]
-        DB["⚡ Instant Database Search\nMatches across 20,000+ staff in < 5ms\n(PostgreSQL + pgvector)"]
-        SMART_FILTER["⏱️ Smart 5-Min Cooldown\nPrevents repeated duplicate check-ins"]
+    subgraph Stage3 ["Stage 3: Vector Storage & Retrieval"]
+        DB["Vector Database (pgvector)<br>Sub-5ms search across 20,000+ enrolled identities"]
+        FILTER["State Management Engine<br>Sliding-window cooldown to prevent duplicate logs"]
     end
 
-    subgraph Step4 ["4. Real-World Business Results"]
-        OUT1["✅ 100% Verified Digital Onboarding\nSaves $80k+ in vendor KYC fees"]
-        OUT2["💼 Automated Attendance & Payroll\nCompletely stops 'buddy punching'"]
-        OUT3["🎯 0.00% Counting Error\nRuns on cheap $450 mini-PCs"]
-        OUT4["🚨 Venue Safety & Crowd Alerts\nPrevents dangerous stampedes"]
+    subgraph Stage4 ["Stage 4: Operational Outcomes"]
+        OUT1["Verified e-KYC Onboarding<br>Zero third-party vendor dependency"]
+        OUT2["Automated Time & Attendance<br>Non-repudiable biometric payroll records"]
+        OUT3["Calibrated Footfall Metrics<br>0.00% counting error on edge hardware"]
+        OUT4["Spatial Safety Monitoring<br>Real-time capacity tracking and congestion alerts"]
     end
 
     CAM --> RECOG
     APP --> LIVENESS
-    LIVENESS -->|Real Person| RECOG
-    LIVENESS -->|Fake Photo| REJ["❌ Instant Fraud Block"]
-    DRONE --> TRACK
-    DRONE --> HEATMAP
+    LIVENESS -->|Valid Capture| RECOG
+    LIVENESS -->|Spoof Attack| REJ["Access Denied / Fraud Flagged"]
+    VIDEO --> TRACK
+    VIDEO --> HEATMAP
 
     RECOG --> DB
-    DB --> SMART_FILTER
+    DB --> FILTER
 
-    SMART_FILTER --> OUT2
+    FILTER --> OUT2
     LIVENESS --> OUT1
     TRACK --> OUT3
     HEATMAP --> OUT4
 
-    style Step1 fill:#f8fafc,stroke:#64748b,stroke-width:2px
-    style Step2 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style Step3 fill:#fefce8,stroke:#eab308,stroke-width:2px
-    style Step4 fill:#f0fdf4,stroke:#22c55e,stroke-width:2px
-    style REJ fill:#fef2f2,stroke:#ef4444,stroke-width:2px
+    style Stage1 fill:#f8fafc,stroke:#94a3b8,stroke-width:1px
+    style Stage2 fill:#f0f9ff,stroke:#0284c7,stroke-width:1px
+    style Stage3 fill:#fefce8,stroke:#ca8a04,stroke-width:1px
+    style Stage4 fill:#f0fdf4,stroke:#16a34a,stroke-width:1px
+    style REJ fill:#fef2f2,stroke:#dc2626,stroke-width:1px
 ```
 
 ---

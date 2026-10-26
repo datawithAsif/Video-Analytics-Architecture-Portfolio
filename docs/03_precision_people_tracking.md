@@ -14,32 +14,32 @@ This project delivers a **Real-Time Unique Pedestrian Tracking Pipeline** using 
 
 ```mermaid
 flowchart TD
-    subgraph Step1 ["Step 1: Crowded Entrance Video"]
-        VIDEO["📹 Busy Factory / Store Entrance\nPeople walking, crossing, and overlapping"]
+    subgraph Stage1 ["Stage 1: High-Density Input Feed"]
+        VIDEO["Transit Corridor Video<br>Pedestrians crossing with severe occlusion"]
     end
 
-    subgraph Step2 ["Step 2: Lightweight AI Tracking"]
-        MODEL["🚀 Lightweight YOLOX AI (35 MB)\n11.3x smaller than standard heavy models"]
-        OCCLUSION["👥 Smart Occlusion Handling\nKeeps tracking people even when walking behind others"]
+    subgraph Stage2 ["Stage 2: Lightweight Neural Tracking"]
+        MODEL["YOLOX-Small Engine (35 MB)<br>11.3x smaller footprint than heavy baselines"]
+        OCCLUSION["Two-Stage Association<br>ByteTrack recovers occluded tracklets"]
         VIDEO --> MODEL --> OCCLUSION
     end
 
-    subgraph Step3 ["Step 3: Precision Mathematical Tuning"]
-        CALIB["⚙️ Fine-Tuned Calibration\n(Threshold 0.4964 & 21-Frame Buffer)\nFilters out false movements and edge shadows"]
+    subgraph Stage3 ["Stage 3: Sub-Decimal Parameter Tuning"]
+        CALIB["Calibrated Operational Gate<br>Threshold: 0.4964 with 21-frame survival buffer"]
         OCCLUSION --> CALIB
     end
 
-    subgraph Step4 ["Step 4: Real-World Business Outcome"]
-        RESULT["🎯 100% Perfect Count Parity\nExactly 392 out of 392 unique people counted\n(0.00% Error Rate)"]
-        ROI["💰 Business Impact:\nRuns on cheap $450 mini-PCs\n(Saves $50,000+ across 20 stores)"]
+    subgraph Stage4 ["Stage 4: Operational Deliverables"]
+        RESULT["Verified Counting Parity<br>Exact 392/392 count (0.00% error rate)"]
+        ROI["Production Hardware Impact<br>Deployed on compact edge hardware (~$450/node)"]
         
         CALIB --> RESULT --> ROI
     end
 
-    style Step1 fill:#f8fafc,stroke:#64748b,stroke-width:2px
-    style Step2 fill:#eff6ff,stroke:#2563eb,stroke-width:2px
-    style Step3 fill:#fef3c7,stroke:#d97706,stroke-width:2px
-    style Step4 fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
+    style Stage1 fill:#f8fafc,stroke:#94a3b8,stroke-width:1px
+    style Stage2 fill:#f0f9ff,stroke:#0284c7,stroke-width:1px
+    style Stage3 fill:#fefce8,stroke:#ca8a04,stroke-width:1px
+    style Stage4 fill:#f0fdf4,stroke:#16a34a,stroke-width:1px
 ```
 
 ---

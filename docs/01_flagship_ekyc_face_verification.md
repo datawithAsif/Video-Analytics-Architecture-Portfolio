@@ -14,43 +14,43 @@ This project delivers a **stateless, GPU-accelerated Face Verification & Anti-Sp
 
 ```mermaid
 flowchart TD
-    subgraph Step1 ["Step 1: User Submits Documents"]
-        SELFIE["🤳 Live Selfie Capture\n(Mobile or Webcam Photo)"]
-        NID["🪪 Government ID Card\n(National ID or Passport Scan)"]
+    subgraph Stage1 ["Stage 1: Document & Image Ingestion"]
+        SELFIE["Live Capture Input<br>Mobile camera or webcam payload"]
+        NID["Reference Document<br>Official ID card or passport scan"]
     end
 
-    subgraph Step2 ["Step 2: AI Fraud & Quality Checks"]
-        FILTER["🔍 Compression & Quality Check\nBlocks downloaded Facebook/WhatsApp photos"]
-        LIVENESS["🛡️ 2D Anti-Spoofing Test\nCatches paper printouts & phone screen replays"]
+    subgraph Stage2 ["Stage 2: Validation & Anti-Spoofing"]
+        FILTER["Information Density Filter<br>Rejects compressed social media downloads"]
+        LIVENESS["2D Anti-Spoofing Model<br>Detects digital screen replays and paper printouts"]
         
         SELFIE --> FILTER --> LIVENESS
     end
 
-    subgraph Step3 ["Step 3: Biometric Face Matching"]
-        ALIGN["📐 Face Alignment\nStraightens head tilt and centers face"]
-        MATCH["🧠 AI Identity Matcher\nCompares selfie features with ID photo"]
+    subgraph Stage3 ["Stage 3: Feature Extraction & Matching"]
+        ALIGN["Landmark Normalization<br>Pose alignment and canonical crop"]
+        MATCH["AdaFace Feature Extractor<br>Calculates cosine vector similarity"]
         
-        LIVENESS -->|Real Human| ALIGN
-        LIVENESS -->|Fake Photo Attack| BLOCK["❌ Fraud Detected\n(Instant Access Denied)"]
+        LIVENESS -->|Real Subject| ALIGN
+        LIVENESS -->|Spoof Attack| BLOCK["Access Rejected<br>Presentation attack flagged"]
         NID --> ALIGN
         ALIGN --> MATCH
     end
 
-    subgraph Step4 ["Step 4: Final Verification Result"]
-        RESULT{"Do Faces Match?"}
-        VERIFIED["✅ e-KYC Verified!\nApproved for instant bank account opening"]
-        REJECTED["⚠️ Identity Mismatch\nFlagged for manual compliance review"]
+    subgraph Stage4 ["Stage 4: Verification Verdict"]
+        DECISION{"Match Score >= 0.45?"}
+        VERIFIED["Identity Confirmed<br>Approved for automated digital onboarding"]
+        REJECTED["Verification Mismatch<br>Routed to secondary manual audit"]
         
-        MATCH --> RESULT
-        RESULT -->|Yes| VERIFIED
-        RESULT -->|No| REJECTED
+        MATCH --> DECISION
+        DECISION -->|Yes| VERIFIED
+        DECISION -->|No| REJECTED
     end
 
-    style Step1 fill:#f8fafc,stroke:#64748b,stroke-width:2px
-    style Step2 fill:#fef3c7,stroke:#d97706,stroke-width:2px
-    style Step3 fill:#eff6ff,stroke:#2563eb,stroke-width:2px
-    style Step4 fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
-    style BLOCK fill:#fef2f2,stroke:#ef4444,stroke-width:2px
+    style Stage1 fill:#f8fafc,stroke:#94a3b8,stroke-width:1px
+    style Stage2 fill:#fefce8,stroke:#ca8a04,stroke-width:1px
+    style Stage3 fill:#f0f9ff,stroke:#0284c7,stroke-width:1px
+    style Stage4 fill:#f0fdf4,stroke:#16a34a,stroke-width:1px
+    style BLOCK fill:#fef2f2,stroke:#dc2626,stroke-width:1px
 ```
 
 ---

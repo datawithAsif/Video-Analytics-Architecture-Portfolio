@@ -1,33 +1,33 @@
 flowchart TD
-    subgraph Step1 ["Step 1: Multi-Camera Ingestion"]
-        CAMS["📹 Office & Factory IP Cameras\n(Continuous 25 FPS RTSP Stream)"]
-        BUFFER["⚡ Zero-Lag Video Buffer\nDrops old frames so video never freezes"]
+    subgraph Stage1 ["Stage 1: Multi-Camera Ingestion"]
+        CAMS["Facility IP Cameras<br>Continuous 25 FPS RTSP Stream"]
+        BUFFER["Decoupled Stream Buffer<br>Single-frame queue prevents socket lag"]
         CAMS --> BUFFER
     end
 
-    subgraph Step2 ["Step 2: Edge AI Detection"]
-        DETECT["🔍 Face Detector\nFinds employee faces in live video stream"]
-        EXTRACT["👤 Biometric Extractor\nConverts face into a compact 128-d digital ID"]
+    subgraph Stage2 ["Stage 2: Edge Inference"]
+        DETECT["Face Detection Engine<br>Localizes faces in continuous video"]
+        EXTRACT["Biometric Embedding Model<br>Generates compact 128-d identity vector"]
         BUFFER --> DETECT --> EXTRACT
     end
 
-    subgraph Step3 ["Step 3: Instant Database Search"]
-        SEARCH["⚡ High-Speed Vector Database\nSearches 20,000+ enrolled employee faces\nin under 5 milliseconds (PostgreSQL)"]
-        MATCHED["🆔 Employee Identified\n(e.g., ID: EMP_1042 - Asif)"]
+    subgraph Stage3 ["Stage 3: Vector Search"]
+        SEARCH["PostgreSQL + pgvector<br>Indexed search across 20,000+ staff in < 5ms"]
+        MATCHED["Identity Resolved<br>Unique employee code identified"]
         EXTRACT --> SEARCH --> MATCHED
     end
 
-    subgraph Step4 ["Step 4: Smart Deduplication & Payroll"]
-        COOLDOWN{"Checked in within\nlast 5 minutes?"}
-        SAVE["✅ Verified Attendance Logged\n(Sent to HR & Payroll System)"]
-        IGNORE["⏳ Duplicate Ignored\n(Prevents double-swiping while standing near camera)"]
+    subgraph Stage4 ["Stage 4: State Deduplication & Logging"]
+        COOLDOWN{"Active Check-In<br>Within Last 5 Minutes?"}
+        SAVE["Attendance Logged<br>Written to HR database with timestamp"]
+        IGNORE["Duplicate Suppressed<br>Prevents multiple logs during single transit"]
         
         MATCHED --> COOLDOWN
-        COOLDOWN -->|No: First Arrival| SAVE
-        COOLDOWN -->|Yes: Already Clocked In| IGNORE
+        COOLDOWN -->|No: First Detection| SAVE
+        COOLDOWN -->|Yes: Recent Detection| IGNORE
     end
 
-    style Step1 fill:#f8fafc,stroke:#64748b,stroke-width:2px
-    style Step2 fill:#eff6ff,stroke:#2563eb,stroke-width:2px
-    style Step3 fill:#fefce8,stroke:#ca8a04,stroke-width:2px
-    style Step4 fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
+    style Stage1 fill:#f8fafc,stroke:#94a3b8,stroke-width:1px
+    style Stage2 fill:#f0f9ff,stroke:#0284c7,stroke-width:1px
+    style Stage3 fill:#fefce8,stroke:#ca8a04,stroke-width:1px
+    style Stage4 fill:#f0fdf4,stroke:#16a34a,stroke-width:1px
