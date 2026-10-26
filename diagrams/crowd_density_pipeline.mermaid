@@ -1,51 +1,28 @@
 flowchart TD
-    subgraph Video_Input ["Macroscopic Video Ingestion"]
-        INPUT["Dense Crowd Video Stream\n(2688x1520 Resolution, 19,500+ Frames)"]
-        FRAME_GEN["Temporal Frame Generator\n(Extract RGB Frames with Timestamp Logging)"]
-        INPUT --> FRAME_GEN
+    subgraph Step1 ["Step 1: Ultra-Dense Crowd Video"]
+        INPUT["🏟️ Stadium / Festival Gathering\nOver 1,000+ people packed shoulder-to-shoulder\n(Standard bounding box detectors fail here)"]
     end
 
-    subgraph Density_Regression_Tier ["Multi-Architecture Density Regression"]
-        DM["Primary Model: DM-Count (QNRF Weights)\nDistribution Matching Loss via Optimal Transport"]
-        BAY["Cross-Validation Model 1: Bayesian Loss (QNRF)\nBayesian Point Supervised Density Regression"]
-        SHA["Cross-Validation Model 2: DM-Count (ShanghaiTech-A)\nExtreme Density Transfer Validation"]
-        
-        FRAME_GEN --> DM
-        FRAME_GEN --> BAY
-        FRAME_GEN --> SHA
+    subgraph Step2 ["Step 2: AI Density Scanning"]
+        HEATMAP["🔥 Continuous Density Heatmap\nConverts the crowd into a visual color-coded heatmap\n(Red = High Congestion, Blue = Free Space)"]
+        INPUT --> HEATMAP
     end
 
-    subgraph Density_Map_Integration ["Spatial Density Map & Integral"]
-        INT_DM["Continuous Spatial Integral: ∫∫ D(x,y) dx dy\n(DM-Count Estimate: 1872.31 at Peak)"]
-        INT_BAY["Continuous Spatial Integral: ∫∫ D_bay(x,y) dx dy\n(Bayesian Estimate: 1758.78 at Peak)"]
-        INT_SHA["Continuous Spatial Integral: ∫∫ D_sha(x,y) dx dy\n(SHA Estimate: 2196.61 at Peak)"]
-        
-        DM --> INT_DM
-        BAY --> INT_BAY
-        SHA --> INT_SHA
+    subgraph Step3 ["Step 3: Multi-Model Cross-Checking"]
+        CHECK["🔬 3-Way AI Consensus\nThree independent models cross-check the numbers:\n• Model 1: 1,872 people\n• Model 2: 1,758 people\n• Model 3: 2,196 people\n➔ Consensus Average: 1,942 ± 183 people"]
+        HEATMAP --> CHECK
     end
 
-    subgraph Statistical_Synthesis ["Statistical Convergence & Uncertainty"]
-        ENS["Ensemble Mean & Confidence Bounds\nMean Peak Count: 1942.57 ± 183.79 (9.4% Uncertainty)"]
-        TIMELINE["Temporal Crowd Timeline Curve\n(Frame-by-Frame Density Profile across 780s)"]
-        HEATMAP["Spatial Concentration Heatmap\n(Bottleneck & High-Density Cluster Localization)"]
+    subgraph Step4 ["Step 4: Safety & Commercial Actions"]
+        SAFETY["🚨 Real-Time Safety Alert\nAlerts event security if density hits dangerous levels\n(Prevents crowd surges and stampedes)"]
+        COMMERCIAL["📊 Commercial Store Planning\nShows mall managers where foot traffic clusters\nfor optimal shop rental pricing"]
         
-        INT_DM --> ENS
-        INT_BAY --> ENS
-        INT_SHA --> ENS
-        
-        ENS --> TIMELINE
-        ENS --> HEATMAP
+        CHECK --> SAFETY
+        CHECK --> COMMERCIAL
     end
 
-    subgraph Spatial_Economics ["Quantitative Economic Implications"]
-        CAPACITY["Commercial Spatial Capacity Optimization\n(Footfall Velocity & Revenue Elasticity)"]
-        INSURANCE["Event Risk Underwriting & Crowd Disaster Loss Modeling"]
-        
-        TIMELINE --> CAPACITY
-        HEATMAP --> INSURANCE
-    end
-
-    style Density_Regression_Tier fill:#eff6ff,stroke:#2563eb,stroke-width:2px
-    style Statistical_Synthesis fill:#fefce8,stroke:#ca8a04,stroke-width:2px
-    style Spatial_Economics fill:#fff1f2,stroke:#e11d48,stroke-width:2px
+    style Step1 fill:#f8fafc,stroke:#64748b,stroke-width:2px
+    style Step2 fill:#eff6ff,stroke:#2563eb,stroke-width:2px
+    style Step3 fill:#fefce8,stroke:#ca8a04,stroke-width:2px
+    style Step4 fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
+    style SAFETY fill:#fef2f2,stroke:#ef4444,stroke-width:2px

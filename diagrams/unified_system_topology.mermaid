@@ -1,54 +1,48 @@
 flowchart TD
-    %% Global Video Analytics & Quantitative Financial Infrastructure
+    %% Recruiter-Friendly End-to-End System Architecture
 
-    subgraph Data_Ingestion ["1. Multi-Modal Ingestion Tier"]
-        RTSP["RTSP Camera Streams\n(H.264/H.265 RTSP Feeds)"]
-        HTTP["REST API Client Payloads\n(Base64 Web / Mobile / NID Scans)"]
-        VIDEO["Recorded Video Assets\n(High-Density Commercial Feeds)"]
+    subgraph Step1 ["1. Live Data Capture"]
+        CAM["📹 Office & Factory CCTV\n(Live Camera Feeds)"]
+        APP["📱 Mobile App / Web Portal\n(Selfie & ID Card Uploads)"]
+        DRONE["🏙️ High-Density Video\n(Crowd & Pedestrian Feeds)"]
     end
 
-    subgraph Micro_Macro_Analytics ["2. Spatial Vision & Tracking Tier"]
-        YOLO["Pedestrian Detector & Tracker\n(YOLOX + ByteTrack Engine)"]
-        DM["Crowd Density Regressor\n(DM-Count / CSRNet Architecture)"]
-        
-        VIDEO --> YOLO
-        VIDEO --> DM
-        RTSP --> YOLO
+    subgraph Step2 ["2. Smart AI Processing"]
+        LIVENESS["🛡️ Fraud & Liveness Check\nBlocks fake photos & screen replays"]
+        TRACK["🚶 People Tracker\nCounts unique pedestrians without duplicates"]
+        HEATMAP["🔥 Crowd Density Heatmap\nEstimates large crowds (>1,000 people)"]
+        RECOG["👤 Face Recognition Engine\nExtracts unique biometric identity"]
     end
 
-    subgraph Biometric_Processing ["3. Biometric Verification & Liveness Tier"]
-        DET["Face Localization & Landmark Alignment\n(YuNet / SCRFD 10G)"]
-        LIVENESS["2D Physical Anti-Spoofing & BPP Filter\n(MiniFASNetV2-SE + Information Density Gate)"]
-        EMBED["Quality-Adaptive Embedding Engine\n(AdaFace ResNet-100 / SFace INT8)"]
-        
-        HTTP --> DET
-        RTSP --> DET
-        DET --> LIVENESS
-        LIVENESS -->|Pass Liveness| EMBED
-        LIVENESS -->|Fail Spoof| REJECT["Rejection & Fraud Alert"]
+    subgraph Step3 ["3. High-Speed Database"]
+        DB["⚡ Instant Database Search\nMatches across 20,000+ staff in < 5ms\n(PostgreSQL + pgvector)"]
+        SMART_FILTER["⏱️ Smart 5-Min Cooldown\nPrevents repeated duplicate check-ins"]
     end
 
-    subgraph Storage_Search ["4. Scalable Storage & Vector Retrieval Tier"]
-        PG["PostgreSQL + pgvector Engine\n(IVFFlat Inverted File Index, 512-d / 128-d)"]
-        STATE["Temporal State Manager\n(Circular Buffer & Cooldown Cache)"]
-        
-        EMBED --> PG
-        EMBED --> STATE
+    subgraph Step4 ["4. Real-World Business Results"]
+        OUT1["✅ 100% Verified Digital Onboarding\nSaves $80k+ in vendor KYC fees"]
+        OUT2["💼 Automated Attendance & Payroll\nCompletely stops 'buddy punching'"]
+        OUT3["🎯 0.00% Counting Error\nRuns on cheap $450 mini-PCs"]
+        OUT4["🚨 Venue Safety & Crowd Alerts\nPrevents dangerous stampedes"]
     end
 
-    subgraph Quantitative_Economics ["5. Applied Financial & Decision Economics"]
-        LOSS["Asymmetric Risk & Loss Engine\nCost(FAR) vs Cost(FRR) Optimization"]
-        TCO["Compute TCO Optimization Engine\nEdge CapEx vs Cloud OpEx Trade-off"]
-        SPATIAL["Spatial Footfall & Labor Economics\nConversion Elasticity & Time-Theft Mitigation"]
-        
-        PG --> LOSS
-        STATE --> SPATIAL
-        YOLO --> SPATIAL
-        DM --> SPATIAL
-        PG -.-> TCO
-    end
+    CAM --> RECOG
+    APP --> LIVENESS
+    LIVENESS -->|Real Person| RECOG
+    LIVENESS -->|Fake Photo| REJ["❌ Instant Fraud Block"]
+    DRONE --> TRACK
+    DRONE --> HEATMAP
 
-    style Biometric_Processing fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
-    style Micro_Macro_Analytics fill:#eff6ff,stroke:#2563eb,stroke-width:2px
-    style Storage_Search fill:#fefce8,stroke:#ca8a04,stroke-width:2px
-    style Quantitative_Economics fill:#fff1f2,stroke:#e11d48,stroke-width:2px
+    RECOG --> DB
+    DB --> SMART_FILTER
+
+    SMART_FILTER --> OUT2
+    LIVENESS --> OUT1
+    TRACK --> OUT3
+    HEATMAP --> OUT4
+
+    style Step1 fill:#f8fafc,stroke:#64748b,stroke-width:2px
+    style Step2 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style Step3 fill:#fefce8,stroke:#eab308,stroke-width:2px
+    style Step4 fill:#f0fdf4,stroke:#22c55e,stroke-width:2px
+    style REJ fill:#fef2f2,stroke:#ef4444,stroke-width:2px

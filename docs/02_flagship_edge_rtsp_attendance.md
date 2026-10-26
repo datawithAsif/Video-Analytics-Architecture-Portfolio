@@ -13,13 +13,39 @@ Manual sign-in sheets, RFID cards, and fingerprint scanners create physical bott
 This project delivers a **Real-Time Edge Face Attendance System** capable of processing continuous video feeds across multiple RTSP IP cameras. The system detects faces using lightweight INT8-quantized edge models, performs sub-5ms vector similarity search against an enrolled database of **20,000+ employees** using PostgreSQL and `pgvector`, and prevents duplicate check-ins using a temporal state machine.
 
 ```mermaid
-flowchart LR
-    A["RTSP Camera Streams\n(IP Feeds)"] --> B["Thread-Per-Camera\nBuffer Decoupling"]
-    B --> C["YuNet INT8\nFace Detection"]
-    C --> D["SFace INT8\n128-d Embedding"]
-    D --> E["PostgreSQL + pgvector\n(IVFFlat Search in <5ms)"]
-    E --> F["5-Min Cooldown Engine\n(Deduplication)"]
-    F --> G["Verified Attendance\n& Payroll Log"]
+flowchart TD
+    subgraph Step1 ["Step 1: Multi-Camera Ingestion"]
+        CAMS["📹 Office & Factory IP Cameras\n(Continuous 25 FPS RTSP Stream)"]
+        BUFFER["⚡ Zero-Lag Video Buffer\nDrops old frames so video never freezes"]
+        CAMS --> BUFFER
+    end
+
+    subgraph Step2 ["Step 2: Edge AI Detection"]
+        DETECT["🔍 Face Detector\nFinds employee faces in live video stream"]
+        EXTRACT["👤 Biometric Extractor\nConverts face into a compact 128-d digital ID"]
+        BUFFER --> DETECT --> EXTRACT
+    end
+
+    subgraph Step3 ["Step 3: Instant Database Search"]
+        SEARCH["⚡ High-Speed Vector Database\nSearches 20,000+ enrolled employee faces\nin under 5 milliseconds (PostgreSQL)"]
+        MATCHED["🆔 Employee Identified\n(e.g., ID: EMP_1042 - Asif)"]
+        EXTRACT --> SEARCH --> MATCHED
+    end
+
+    subgraph Step4 ["Step 4: Smart Deduplication & Payroll"]
+        COOLDOWN{"Checked in within\nlast 5 minutes?"}
+        SAVE["✅ Verified Attendance Logged\n(Sent to HR & Payroll System)"]
+        IGNORE["⏳ Duplicate Ignored\n(Prevents double-swiping while standing near camera)"]
+        
+        MATCHED --> COOLDOWN
+        COOLDOWN -->|No: First Arrival| SAVE
+        COOLDOWN -->|Yes: Already Clocked In| IGNORE
+    end
+
+    style Step1 fill:#f8fafc,stroke:#64748b,stroke-width:2px
+    style Step2 fill:#eff6ff,stroke:#2563eb,stroke-width:2px
+    style Step3 fill:#fefce8,stroke:#ca8a04,stroke-width:2px
+    style Step4 fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
 ```
 
 ---

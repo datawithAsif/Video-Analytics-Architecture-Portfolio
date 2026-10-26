@@ -13,21 +13,44 @@ In digital banking and FinTech, customer onboarding (e-KYC) requires instantly v
 This project delivers a **stateless, GPU-accelerated Face Verification & Anti-Spoofing API**. It takes two images (a live selfie and an official ID card scan), checks the live capture for physical fraud, normalizes the faces, extracts high-dimensional biometric vectors, and computes a similarity score in real time.
 
 ```mermaid
-flowchart LR
-    A["Live Capture\n(Mobile / Web)"] --> B["Compression Filter\n(BPP >= 1.0)"]
-    B --> C["Face Detection\n& Landmark Alignment"]
-    C --> D["2D Liveness Check\n(MiniFASNet)"]
-    D -->|Real| E["AdaFace Embedding\n(512-d Vector)"]
-    D -->|Fake / Replay| F["Block & Alert"]
-    
-    G["NID Card Photo\n(Document Scan)"] --> H["Face Detection\n& Landmark Alignment"]
-    H --> I["AdaFace Embedding\n(512-d Vector)"]
-    
-    E --> J["Cosine Match Engine"]
-    I --> J
-    J --> K{"Match Score >= 0.45?"}
-    K -->|Yes| L["Identity Verified"]
-    K -->|No| M["Verification Failed"]
+flowchart TD
+    subgraph Step1 ["Step 1: User Submits Documents"]
+        SELFIE["🤳 Live Selfie Capture\n(Mobile or Webcam Photo)"]
+        NID["🪪 Government ID Card\n(National ID or Passport Scan)"]
+    end
+
+    subgraph Step2 ["Step 2: AI Fraud & Quality Checks"]
+        FILTER["🔍 Compression & Quality Check\nBlocks downloaded Facebook/WhatsApp photos"]
+        LIVENESS["🛡️ 2D Anti-Spoofing Test\nCatches paper printouts & phone screen replays"]
+        
+        SELFIE --> FILTER --> LIVENESS
+    end
+
+    subgraph Step3 ["Step 3: Biometric Face Matching"]
+        ALIGN["📐 Face Alignment\nStraightens head tilt and centers face"]
+        MATCH["🧠 AI Identity Matcher\nCompares selfie features with ID photo"]
+        
+        LIVENESS -->|Real Human| ALIGN
+        LIVENESS -->|Fake Photo Attack| BLOCK["❌ Fraud Detected\n(Instant Access Denied)"]
+        NID --> ALIGN
+        ALIGN --> MATCH
+    end
+
+    subgraph Step4 ["Step 4: Final Verification Result"]
+        RESULT{"Do Faces Match?"}
+        VERIFIED["✅ e-KYC Verified!\nApproved for instant bank account opening"]
+        REJECTED["⚠️ Identity Mismatch\nFlagged for manual compliance review"]
+        
+        MATCH --> RESULT
+        RESULT -->|Yes| VERIFIED
+        RESULT -->|No| REJECTED
+    end
+
+    style Step1 fill:#f8fafc,stroke:#64748b,stroke-width:2px
+    style Step2 fill:#fef3c7,stroke:#d97706,stroke-width:2px
+    style Step3 fill:#eff6ff,stroke:#2563eb,stroke-width:2px
+    style Step4 fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
+    style BLOCK fill:#fef2f2,stroke:#ef4444,stroke-width:2px
 ```
 
 ---
