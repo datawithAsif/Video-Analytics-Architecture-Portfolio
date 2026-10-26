@@ -1,166 +1,131 @@
-# Physical Intelligence & Quantitative Financial Architecture Portfolio
+# Video Analytics & Computer Vision Architecture Portfolio
 
-> **Engineering Domain:** Video Analytics, Edge Biometrics, Scalable Vector Systems & MLOps  
-> **Academic Foundation:** B.Sc. in Economics & Finance, BRAC University  
-> **Author Profile:** Machine Learning & Data Engineer  
-> **Repository Nature:** 100% Pure System Design RFCs, Architectural Specifications & Mathematical Models (Zero Proprietary Code)
+> **Author:** Machine Learning & Data Engineer  
+> **Academic Background:** B.Sc. in Economics & Finance, BRAC University  
+> **Core Focus:** Real-Time Video Analytics, Biometrics, Scalable Vector Systems & Production Edge AI  
+> **Repository Nature:** 100% Architectural System Designs, RFCs & Production Benchmarks (Zero Proprietary Code)
 
 ---
 
-## Executive Overview
+## Executive Summary
 
-Modern enterprise video analytics is more than computer vision—it is an **infrastructure and capital investment** that directly impacts enterprise risk, operating margins, and asset productivity. 
+Welcome to my **Video Analytics & Computer Vision Architecture Portfolio**. 
 
-This repository presents an executive-grade **System Architecture Portfolio** synthesizing four production-grade computer vision systems into a unified platform. It pairs low-latency deep learning inference and high-dimensional vector retrieval with **Microeconomic Decision Theory, Asymmetric Risk Formulations, and Capital Budgeting (CapEx vs. OpEx)**.
+With an academic foundation in **Economics & Finance from BRAC University**, I approach machine learning engineering through a dual lens: **deep technical execution** (low-latency inference, model quantization, scalable vector databases) paired with an **analytical, business-driven mindset** (minimizing server costs, eliminating workforce fraud, and optimizing hardware CapEx).
+
+This repository details the architectural designs, physical failure analyses, and empirical benchmarks of four production-grade computer vision systems:
 
 ```mermaid
 flowchart TD
-    %% Master Unified Architecture Topology
+    %% Master Unified Architecture
 
-    subgraph Tier1_Ingestion ["1. Multi-Stream Ingestion Tier"]
-        RTSP["RTSP Camera Feeds\n(H.264 / H.265 Enterprise Feeds)"]
-        HTTP["Async REST Endpoints\n(Base64 Web / Mobile / NID Scans)"]
-        STREAM["High-Resolution Video Files\n(Dense Urban Corridors)"]
+    subgraph Ingestion ["1. Video & Image Ingestion Tier"]
+        RTSP["RTSP Camera Feeds\n(Multi-Camera IP Streams)"]
+        HTTP["REST API Endpoints\n(Base64 Web / Mobile / Document Scans)"]
+        VIDEO["High-Resolution Video\n(Dense Crowd Surveillance)"]
     end
 
-    subgraph Tier2_Spatial ["2. Spatial Analytics & Tracking Engine"]
-        DM["Macro Density Regressor\n(DM-Count / Bayesian Density Maps)"]
-        YOLO["Micro Pedestrian Tracker\n(YOLOX-Small + ByteTrack Engine)"]
-        
-        STREAM --> DM
-        STREAM --> YOLO
-        RTSP --> YOLO
-    end
-
-    subgraph Tier3_Biometrics ["3. Biometric Verification & Liveness Engine"]
-        DET["YuNet INT8 / SCRFD 10G\n(5-pt Affine Similarity Warping)"]
-        LIVENESS["2D Physical Anti-Spoofing Gate\n(MiniFASNetV2-SE + BPP Filter)"]
+    subgraph Vision_Tier ["2. Computer Vision & Analytics Tier"]
+        YOLO["Pedestrian Tracker\n(YOLOX-Small + ByteTrack)"]
+        DM["Crowd Density Regressor\n(DM-Count Heatmap Engine)"]
+        DET["Face Detector & Aligner\n(YuNet INT8 / SCRFD 10G)"]
+        SPOOF["2D Anti-Spoofing Gate\n(MiniFASNet + BPP Filter)"]
         EMBED["Feature Embedding Extractor\n(AdaFace ResNet-100 / SFace INT8)"]
         
-        HTTP --> DET
+        VIDEO --> YOLO
+        VIDEO --> DM
         RTSP --> DET
-        DET --> LIVENESS
-        LIVENESS -->|Verified Real| EMBED
-        LIVENESS -->|Spoof Attack| REJECT["Rejection / Fraud Alert"]
+        HTTP --> DET
+        DET --> SPOOF
+        SPOOF -->|Verified Real| EMBED
     end
 
-    subgraph Tier4_Storage ["4. Scalable Vector Retrieval Tier"]
-        PG["PostgreSQL + pgvector Engine\n(IVFFlat Inverted File Index across 20k+ Vectors)"]
-        STATE["Temporal State Manager\n(Circular Queue & Deduplication Cooldown)"]
+    subgraph Storage_Tier ["3. Scalable Database & Vector Search"]
+        PG["PostgreSQL + pgvector Database\n(Sub-5ms IVFFlat Search across 20k+ Identities)"]
+        STATE["Temporal State Manager\n(5-Minute Cooldown Deduplication)"]
         
         EMBED --> PG
         EMBED --> STATE
     end
 
-    subgraph Tier5_Economics ["5. Applied Quantitative Financial Framework"]
-        LOSS["Asymmetric Risk Engine\nMinimizing E[Loss] = C_FAR·P(F)·FAR + C_FRR·P(L)·FRR"]
-        TCO["Compute TCO Optimization\nFixed Edge CapEx vs. Variable Cloud OpEx (92.6% Savings)"]
-        LABOR["Workforce & Spatial Econometrics\nBuddy Punching Elimination & Footfall Elasticity"]
+    subgraph Business_Impact ["4. Business & Operational Value"]
+        V1["Fraud Prevention & Zero SaaS Costs\n(Replaces $1/check KYC services)"]
+        V2["Workforce Integrity & 90% Cost Cut\n(Eliminates buddy punching; runs on edge)"]
+        V3["85% Hardware CapEx Reduction\n(35MB calibrated model runs on cheap mini-PCs)"]
+        V4["Venue Safety & Spatial Analytics\n(Real-time capacity tracking & heatmaps)"]
         
-        PG --> LOSS
-        PG -.-> TCO
-        STATE --> LABOR
-        YOLO --> LABOR
-        DM --> LABOR
+        PG --> V1
+        STATE --> V2
+        YOLO --> V3
+        DM --> V4
     end
 
-    style Tier3_Biometrics fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
-    style Tier2_Spatial fill:#eff6ff,stroke:#2563eb,stroke-width:2px
-    style Tier4_Storage fill:#fefce8,stroke:#ca8a04,stroke-width:2px
-    style Tier5_Economics fill:#fff1f2,stroke:#e11d48,stroke-width:2px
+    style Vision_Tier fill:#eff6ff,stroke:#2563eb,stroke-width:2px
+    style Storage_Tier fill:#fefce8,stroke:#ca8a04,stroke-width:2px
+    style Business_Impact fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
 ```
 
 ---
 
-## Architectural Pillar Index
+## The 4 Projects at a Glance
 
-The portfolio is structured into five comprehensive technical design documents:
-
-| Pillar | Focus Area | Core Technologies | Economic / Financial Domain | Documentation Link |
-| :--- | :--- | :--- | :--- | :--- |
-| **Flagship 1** | **FinTech e-KYC & Anti-Spoofing API** | FastAPI, SCRFD 10G, AdaFace (ResNet-100), MiniFASNetV2-SE, Pillow-HEIF, Rawpy | **Asymmetric Loss Modeling**: $Cost(\text{FAR}) \gg Cost(\text{FRR})$, AML fine mitigation, SaaS displacement ROI | [**Read RFC 01**](docs/01_flagship_ekyc_face_verification.md) |
-| **Flagship 2** | **Distributed Edge RTSP Face Recognition** | Multi-threaded RTSP, YuNet INT8, SFace INT8, PostgreSQL, `pgvector` (IVFFlat) | **Capital Budgeting (TCO)**: Edge CapEx vs Cloud OpEx (92.6% cost reduction), Principal-Agent labor theory | [**Read RFC 02**](docs/02_flagship_edge_rtsp_attendance.md) |
-| **Pillar 3** | **Precision Pedestrian Tracking** | YOLOX-Small (35MB), ByteTrack, ONNX Runtime CUDA, Sub-Decimal Calibration | **Retail Conversion Elasticity**: Footfall-to-revenue models ($\varepsilon_{R, F}$), Edge hardware CapEx optimization | [**Read RFC 03**](docs/03_precision_people_tracking.md) |
-| **Pillar 4** | **Macroscopic Crowd Density Mapping** | DM-Count (Optimal Transport), Bayesian point loss, CSRNet, Spatial integration | **Spatial Asset Economics**: Commercial floor-space capacity yield, Actuarial crowd surge disaster insurance | [**Read RFC 04**](docs/04_macro_crowd_density_analytics.md) |
-| **Pillar 5** | **Quantitative Financial Framework** | Applied Econometrics, Microeconomic Decision Theory, NPV Modeling | **Mathematical Synthesis**: Formal derivations of loss matrices, TCO schedules, and labor moral hazard | [**Read Framework 05**](docs/05_economic_tradeoff_framework.md) |
+| Project | The Core Problem | Technical Solution | Measurable Engineering Impact | Detailed Documentation |
+| :--- | :--- | :--- | :---: | :--- |
+| **1. FinTech e-KYC Verification API** | Preventing photo fraud & screen replays during digital account signup. | FastAPI + AdaFace + MiniFASNet + Information Density ($BPP \ge 1.0$) Filter. | **58x throughput speedup** (0.07s vs 4.5s) via async thread-offloading. | [**Read RFC 01**](docs/01_flagship_ekyc_face_verification.md) |
+| **2. Edge RTSP Attendance System** | Eliminating time-theft ("buddy punching") on multi-camera streams. | Thread-per-camera architecture + YuNet INT8 + PostgreSQL `pgvector`. | **Sub-5ms vector search** across **20,000+ enrolled staff**; zero video lag. | [**Read RFC 02**](docs/02_flagship_edge_rtsp_attendance.md) |
+| **3. Precision Pedestrian Tracking** | Occlusion & overcounting at busy factory gates and transit corridors. | YOLOX-Small + ByteTrack with sub-decimal ($0.4964$) threshold calibration. | **Exact 0.00% error rate** (392/392 count); **11.3x smaller memory** & **1.87x faster**. | [**Read RFC 03**](docs/03_precision_people_tracking.md) |
+| **4. Macroscopic Crowd Density** | Counting crowds exceeding 1,000+ people where bounding boxes collapse. | Distribution Matching (DM-Count) spatial density regression. | **1,942 ± 183 peak headcount** cross-validated across 19,500+ frames. | [**Read RFC 04**](docs/04_macro_crowd_density_analytics.md) |
 
 ---
 
-## Key Engineering Innovations & Highlights
+## Key Technical Highlights
 
-### 1. FinTech e-KYC: Solving Physical 2D Anti-Spoofing Vulnerabilities
-* **Information Density ($BPP$) Filter:** Implemented a pre-inference perimeter gate requiring $\ge 1.0\text{ Bits Per Pixel}$, instantly filtering out compressed social media portrait replays before GPU invocation.
-* **Apple Deep Fusion vs. RAW Bayer Analysis:** Diagnosed computational noise-reduction bypasses where mobile JPEG conversion blurs away microscopic moiré screen fringes. Built raw sensor (`.DNG`) pipelines to inspect pristine high-frequency sensor noise.
-* **Quality-Adaptive Matching (AdaFace):** Adaptively modulates cosine margins based on feature norms, solving false rejections caused by faded, laminated National ID card scans.
-* **Asynchronous Concurrency:** Designed an `async def` FastAPI architecture offloading blocking neural execution to thread pools, achieving a **58x throughput speedup (0.077s vs 4.50s)** under concurrent multi-client load.
+### 1. Hardening Biometric Security (FinTech e-KYC)
+* **Information Density ($BPP$) Filter:** Attackers download compressed target photos from Facebook or WhatsApp and hold them to the camera. By requiring a minimum of $1.0\text{ Bits Per Pixel}$, the API instantly rejects compressed social media replays at the network perimeter.
+* **Apple Deep Fusion vs. RAW Bayer Analysis:** Discovered that smartphone in-camera noise reduction (like Apple's Deep Fusion) blurs away screen moiré lines in JPEGs, inadvertently helping screen spoofing attacks. Built raw `.DNG` sensor pipelines to detect authentic high-frequency screen interference.
+* **Quality-Adaptive Loss (AdaFace):** Adaptively relaxes confidence margins on faded or laminated government National ID scans, preventing false rejections of legitimate customers.
 
-### 2. Enterprise Edge RTSP: Scalable Vector Search at Sub-5ms
-* **PostgreSQL + `pgvector` (IVFFlat):** Partitioned 20,000+ enrolled identity embeddings into 100 Voronoi clusters, reducing candidate vector checks from 20,000 to ~2,000 and yielding sub-5ms nearest-neighbor queries.
-* **Thread-per-Camera Ingestion:** Decoupled socket capture from neural execution using atomic circular queues (`maxlen=1`), eliminating the RTSP buffer accumulation lag common in standard loops.
-* **Temporal Cooldown Engine:** Enforced sliding-window deduplication state machines to prevent repeated check-in logging during continuous employee transit.
+### 2. Scalable High-Dimensional Vector Search
+* **PostgreSQL + `pgvector`:** Indexed 20,000+ employee embeddings into 100 Voronoi clusters using IVFFlat, reducing nearest-neighbor query times from hundreds of milliseconds down to **under 5 milliseconds**.
+* **Thread-per-Camera Decoupling:** Decoupled continuous 25 fps RTSP video socket capture from neural network inference using atomic circular queues (`maxlen=1`), eliminating the growing video lag common in standard loops.
 
-### 3. Pedestrian Tracking: The Sub-Decimal Mathematical Calibration
-* **Transition Cliff Discovery:** Discovered a discrete tracking count jump over a tiny $0.001$ threshold interval on YOLOX-Small.
-* **Sub-Decimal Interpolation:** Formulated linear interpolation to derive the exact matching threshold:
-  $$\tau^* = 0.496 + \left(\frac{392 - 388}{399 - 388}\right) \times 0.001 \approx \mathbf{0.4964}$$
-* **Flawless Parity:** Achieved a **0.00% error rate (392/392 unique people)** matching the heavy YOLOX-X baseline, while reducing memory footprint by **11.3x (35 MB vs 395 MB)** and accelerating pipeline speed by **1.87x**.
-
-### 4. Crowd Density: Multi-Architecture Cross-Validation
-* **Spatial Integral Formulation:** Modeled extreme crowd scenes (>1,000 people per frame) where bounding boxes fail as continuous 2D density surfaces: $\hat{N} = \iint_\Omega D(x, y) \, dx \, dy$.
-* **Triangulated Verification:** Cross-validated DM-Count (QNRF: 1,872) against Bayesian point regression (1,758) and ShanghaiTech-A (2,196), establishing a reliable ensemble peak estimate of **1,942.57 ± 183.79**.
+### 3. The Sub-Decimal Tracker Calibration Breakthrough
+* **100% Accuracy on an 11x Smaller Footprint:** Rather than running the resource-heavy YOLOX-X model (395 MB), systematically calibrated the lightweight YOLOX-Small model (35 MB) using sub-decimal threshold tuning (`0.4964` matching threshold, `21` frame buffer). Achieved **exact 0.00% error rate parity (392/392 unique people)** while increasing pipeline speed by **1.87x**.
 
 ---
 
-## Applied Economics & Quantitative Finance Interlock
+## Business Value & ROI Summary
 
-Coming from an academic background in **Economics and Finance at BRAC University**, this portfolio addresses technical decisions through a quantitative financial lens:
+Coming from an Economics & Finance background, I prioritize engineering choices that directly translate to bottom-line business value:
 
-```
-┌─────────────────────────────────┬────────────────────────────────────────────────────────┐
-│ Economic Concept                │ Engineering Application & Quantitative Value           │
-├─────────────────────────────────┼────────────────────────────────────────────────────────┤
-│ Asymmetric Loss Functions       │ Balances Cost(FAR) >> Cost(FRR) to minimize dollar     │
-│                                 │ losses from digital onboarding AML & credit fraud.     │
-├─────────────────────────────────┼────────────────────────────────────────────────────────┤
-│ Total Cost of Ownership (TCO)   │ Quantifies 92.6% cost reduction ($107,000 saved over   │
-│                                 │ 3 years) by deploying INT8 edge models over AWS GPU.   │
-├─────────────────────────────────┼────────────────────────────────────────────────────────┤
-│ Principal-Agent Moral Hazard    │ Eliminates "buddy punching" time-theft, recovering     │
-│                                 │ $220k–$500k in unearned payroll margins per 1k staff.  │
-├─────────────────────────────────┼────────────────────────────────────────────────────────┤
-│ Footfall Conversion Elasticity  │ Unbiased estimation of retail conversion elasticity    │
-│                                 │ (d ln Y / d ln F) enabled by 0.00% tracking accuracy.  │
-└─────────────────────────────────┴────────────────────────────────────────────────────────┘
-```
+* 💰 **SaaS Displacement:** The self-hosted e-KYC pipeline replaces commercial identity vendors (\$0.50–\$1.50 per check), saving over **\$80,000 annually** for an active digital platform.
+* 🛡️ **Eliminating Payroll Time-Theft:** Automated biometric attendance removes "buddy punching", which costs enterprises **2% to 5% of gross payroll** annually.
+* ⚡ **Hardware CapEx Optimization:** Calibrating lightweight models (35MB vs 395MB) allows the tracking pipeline to run on **\$450 mini-PCs** rather than **\$3,000 GPU workstations** (85% hardware cost savings per deployed site).
+* 🌐 **90%+ Bandwidth & Cloud Savings:** Processing video locally on edge devices avoids recurring cloud streaming and cloud GPU fees (saving **\$30,000+ per year** across a 20-camera facility).
 
 ---
 
-## Repository Structure & Diagram Assets
+## Repository Structure
 
 ```
-video_analytics_architecture_portfolio/
-├── README.md                                  # Portfolio Master Guide (You are here)
+Video-Analytics-Architecture-Portfolio/
+├── README.md                                  # Executive Overview (You are here)
 ├── docs/
-│   ├── 01_flagship_ekyc_face_verification.md   # Flagship 1: eKYC, AdaFace, Anti-Spoofing & FinTech Fraud
-│   ├── 02_flagship_edge_rtsp_attendance.md     # Flagship 2: Multi-stream RTSP, pgvector, Scalable Identity
-│   ├── 03_precision_people_tracking.md        # Pillar 3: YOLOX, ByteTrack & Sub-Decimal Calibration
-│   ├── 04_macro_crowd_density_analytics.md     # Pillar 4: Spatial Density Mapping & Crowd Dynamics
-│   └── 05_economic_tradeoff_framework.md      # Pillar 5: Applied Quantitative Financial Framework
-├── diagrams/                                  # Modular, publication-ready Mermaid diagrams
+│   ├── 01_flagship_ekyc_face_verification.md   # Project 1: eKYC API, AdaFace, Anti-Spoofing & Concurrency
+│   ├── 02_flagship_edge_rtsp_attendance.md     # Project 2: Multi-camera RTSP, pgvector & Cooldown State
+│   ├── 03_precision_people_tracking.md        # Project 3: YOLOX, ByteTrack & Sub-Decimal Calibration
+│   └── 04_macro_crowd_density_analytics.md     # Project 4: Spatial Density Mapping & Crowd Dynamics
+├── diagrams/                                  # High-resolution Mermaid source files
 │   ├── unified_system_topology.mermaid
 │   ├── ekyc_anti_spoof_pipeline.mermaid
 │   ├── edge_rtsp_vector_search.mermaid
 │   ├── tracker_calibration_curve.mermaid
 │   └── crowd_density_pipeline.mermaid
-└── .gitignore                                 # Clean gitignore excluding system/temporary files
+└── .gitignore                                 # Production gitignore
 ```
 
 ---
 
-## Compliance & Confidentiality Notice
+## Confidentiality & IP Notice
 
-This portfolio strictly contains **conceptual system architecture documentation, mathematical models, and design trade-off analyses**. 
-
-* **Zero Proprietary Code:** Contains no proprietary source code, internal software firm scripts, or private repository files.
-* **Zero Confidential Data:** Contains no client credentials, private database passwords, internal IP addresses, or proprietary customer data.
-* **Public Domain Science:** All neural network architectures (InsightFace, AdaFace, MiniFASNet, YOLOX, ByteTrack, DM-Count, PostgreSQL) reference publicly available research literature and open-source models.
+This portfolio contains **conceptual architectural specifications, design trade-off analyses, and public benchmark evaluations**. It contains **zero proprietary source code, zero internal company scripts, and zero confidential client credentials**. All neural network architectures (InsightFace, AdaFace, MiniFASNet, YOLOX, ByteTrack, DM-Count, PostgreSQL) reference publicly available scientific literature and open-source models.
