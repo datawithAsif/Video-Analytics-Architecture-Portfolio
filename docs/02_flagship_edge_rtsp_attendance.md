@@ -12,6 +12,13 @@ Manual sign-in sheets, RFID cards, and fingerprint scanners create physical bott
 
 This project delivers a **Real-Time Edge Face Attendance System** capable of processing continuous video feeds across multiple RTSP IP cameras. The system detects faces using lightweight INT8-quantized edge models, performs sub-5ms vector similarity search against an enrolled database of **20,000+ employees** using PostgreSQL and `pgvector`, and prevents duplicate check-ins using a temporal state machine.
 
+<p align="center">
+  <img src="../diagrams/edge_rtsp_vector_search.png" alt="Multi-Stream RTSP Ingestion & Sub-15ms Vector Search Engine Blueprint" width="100%">
+</p>
+
+<details>
+<summary><b>📐 View Architectural Flow Specification (Mermaid)</b></summary>
+
 ```mermaid
 flowchart TD
     subgraph Stage1 ["Stage 1: Multi-Camera Ingestion"]
@@ -47,6 +54,8 @@ flowchart TD
     style Stage3 fill:#fefce8,stroke:#ca8a04,stroke-width:1px
     style Stage4 fill:#f0fdf4,stroke:#16a34a,stroke-width:1px
 ```
+
+</details>
 
 ---
 

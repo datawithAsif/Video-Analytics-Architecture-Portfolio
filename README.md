@@ -17,6 +17,13 @@ With an interdisciplinary background combining an **M.Sc. in Applied Mathematics
 
 This repository details the architectural designs, physical failure analyses, and empirical benchmarks of four production-grade computer vision systems:
 
+<p align="center">
+  <img src="diagrams/unified_system_topology.png" alt="Distributed Multi-Camera Computer Vision & Real-Time Vector Topology Blueprint" width="100%">
+</p>
+
+<details>
+<summary><b>📐 View Architectural Flow Specification (Mermaid)</b></summary>
+
 ```mermaid
 flowchart TD
     %% Professional End-to-End System Architecture
@@ -68,6 +75,8 @@ flowchart TD
     style REJ fill:#fef2f2,stroke:#dc2626,stroke-width:1px
 ```
 
+</details>
+
 ---
 
 ## The 4 Projects at a Glance
@@ -117,13 +126,13 @@ Video-Analytics-Architecture-Portfolio/
 │   ├── 01_flagship_ekyc_face_verification.md   # Project 1: eKYC API, AdaFace, Anti-Spoofing & Concurrency
 │   ├── 02_flagship_edge_rtsp_attendance.md     # Project 2: Multi-camera RTSP, pgvector & Cooldown State
 │   ├── 03_precision_people_tracking.md        # Project 3: YOLOX, ByteTrack & Sub-Decimal Calibration
-│   └── 04_macro_crowd_density_analytics.md     # Project 4: Spatial Density Mapping & Crowd Dynamics
-├── diagrams/                                  # High-resolution Mermaid source files
-│   ├── unified_system_topology.mermaid
-│   ├── ekyc_anti_spoof_pipeline.mermaid
-│   ├── edge_rtsp_vector_search.mermaid
-│   ├── tracker_calibration_curve.mermaid
-│   └── crowd_density_pipeline.mermaid
+├── diagrams/                                  # High-resolution CAD Blueprints & Flow Specs
+│   ├── unified_system_topology.png            # Master System Topology CAD Blueprint
+│   ├── ekyc_anti_spoof_pipeline.png           # e-KYC Anti-Spoofing & Liveness Blueprint
+│   ├── edge_rtsp_vector_search.png            # Multi-Camera RTSP & pgvector Blueprint
+│   ├── tracker_calibration_curve.png          # ByteTrack Calibration & Occlusion Blueprint
+│   ├── crowd_density_pipeline.png             # DM-Count Crowd Heatmap Blueprint
+│   └── *.mermaid                              # Raw Mermaid architecture definitions
 └── .gitignore                                 # Production gitignore
 ```
 

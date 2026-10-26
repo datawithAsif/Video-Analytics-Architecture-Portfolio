@@ -12,6 +12,13 @@ Accurately counting unique pedestrians in crowded environments (such as factory 
 
 This project delivers a **Real-Time Unique Pedestrian Tracking Pipeline** using a **CrowdHuman-finetuned YOLOX** detector paired with the **ByteTrack** association engine. By conducting an empirical **sub-decimal calibration experiment**, we tuned the lightweight **YOLOX-Small (35 MB)** model to match the ground-truth accuracy of the heavy **YOLOX-X (395 MB)** model with **0.00% error rate (392/392 people counted)**, while achieving an **11.3x memory reduction** and a **1.87x speedup**.
 
+<p align="center">
+  <img src="../diagrams/tracker_calibration_curve.png" alt="Calibrated Object Tracking & Spatial Occlusion Recovery Pipeline Blueprint" width="100%">
+</p>
+
+<details>
+<summary><b>📐 View Architectural Flow Specification (Mermaid)</b></summary>
+
 ```mermaid
 flowchart TD
     subgraph Stage1 ["Stage 1: High-Density Input Feed"]
@@ -41,6 +48,8 @@ flowchart TD
     style Stage3 fill:#fefce8,stroke:#ca8a04,stroke-width:1px
     style Stage4 fill:#f0fdf4,stroke:#16a34a,stroke-width:1px
 ```
+
+</details>
 
 ---
 

@@ -12,6 +12,13 @@ In ultra-dense crowd scenarios—such as stadium exits, festival grounds, and ma
 
 This project delivers a **Macroscopic Crowd Density Estimation Pipeline**. Instead of attempting to locate individual bounding boxes, the system treats crowd counting as a **continuous 2D spatial density regression** problem. Using **Distribution Matching Count (DM-Count)**, the system predicts high-resolution density heatmaps, integrates them to calculate total headcount, and tracks crowd accumulation over continuous video feeds.
 
+<p align="center">
+  <img src="../diagrams/crowd_density_pipeline.png" alt="Continuous Crowd Density Estimation & Real-Time Bottleneck Dispatch Blueprint" width="100%">
+</p>
+
+<details>
+<summary><b>📐 View Architectural Flow Specification (Mermaid)</b></summary>
+
 ```mermaid
 flowchart TD
     subgraph Stage1 ["Stage 1: Macroscopic Crowd Ingestion"]
@@ -41,6 +48,8 @@ flowchart TD
     style Stage3 fill:#fefce8,stroke:#ca8a04,stroke-width:1px
     style Stage4 fill:#f0fdf4,stroke:#16a34a,stroke-width:1px
 ```
+
+</details>
 
 ---
 

@@ -12,6 +12,13 @@ In digital banking and FinTech, customer onboarding (e-KYC) requires instantly v
 
 This project delivers a **stateless, GPU-accelerated Face Verification & Anti-Spoofing API**. It takes two images (a live selfie and an official ID card scan), checks the live capture for physical fraud, normalizes the faces, extracts high-dimensional biometric vectors, and computes a similarity score in real time.
 
+<p align="center">
+  <img src="../diagrams/ekyc_anti_spoof_pipeline.png" alt="Production e-KYC Dual-Channel Liveness & Verification Pipeline Blueprint" width="100%">
+</p>
+
+<details>
+<summary><b>📐 View Architectural Flow Specification (Mermaid)</b></summary>
+
 ```mermaid
 flowchart TD
     subgraph Stage1 ["Stage 1: Document & Image Ingestion"]
@@ -52,6 +59,8 @@ flowchart TD
     style Stage4 fill:#f0fdf4,stroke:#16a34a,stroke-width:1px
     style BLOCK fill:#fef2f2,stroke:#dc2626,stroke-width:1px
 ```
+
+</details>
 
 ---
 
